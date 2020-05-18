@@ -1,0 +1,44 @@
+SET GLOBAL log_bin_trust_function_creators = 1; -- to jest po to zeby mozna bylo stowrzyc funkcje niedeterministyczna
+DELIMITER $$
+CREATE PROCEDURE rejestracja (
+IN newLogin VARCHAR(20), 
+IN hasło VARCHAR(20), 
+IN typ VARCHAR(15)
+)
+BEGIN
+	DECLARE wynik INT;
+	DECLARE liczLogin INT DEFAULT NULL;
+	DECLARE newSHA2 VARCHAR(64);
+	DECLARE tempTyp VARCHAR(15);
+	DECLARE tempLogin VARCHAR(20);
+	
+	SET @tempLogin = newLogin;
+	SET @tempTyp = typ;
+	
+	SET @query = 'SELECT COUNT(*) INTO @liczLogin FROM użytkownicy WHERE login = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempLogin;
+	
+	SET liczLogin = (SELECT COUNT(*) FROM użytkownicy WHERE login = newLogin);
+	
+	IF liczLogin = 0 THEN
+	
+		SET @newSHA2 = SHA2(hasło, 0);
+	
+		PREPARE dodajUżytkownika FROM 'INSERT INTO użytkownicy(login, hasło_sha2, typ) VALUES(?,?,?)';
+		EXECUTE dodajUżytkownika USING @tempLogin, @newSHA2, @tempTyp;
+	
+		SET wynik = 0;
+	
+	ELSE
+		SET wynik =  1;
+	END IF;	
+	
+	SELECT wynik;
+	
+END$$
+DELIMITER ;
+
+
+call rejestracja("abcd","abcd","menedżer",@temp);
+

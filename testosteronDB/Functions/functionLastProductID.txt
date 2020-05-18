@@ -1,0 +1,18 @@
+DELIMITER $$
+CREATE FUNCTION ostatnieID()
+RETURNS INT
+BEGIN
+	DECLARE lastID INT;
+	
+	SET lastID = (SELECT COUNT(*) FROM produkty);
+	
+	IF lastID = 0 THEN 
+		SET lastID = 1;
+		RETURN lastID;
+	END IF;
+	
+	SET lastID = (SELECT MAX(produkt_id) FROM produkty);
+	
+	RETURN lastID;
+END$$
+DELIMITER ;

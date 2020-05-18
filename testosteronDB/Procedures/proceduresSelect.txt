@@ -1,0 +1,34 @@
+DELIMITER $$
+CREATE PROCEDURE selectGwiazda(
+IN typ VARCHAR(15),
+IN cenaDół INT,
+IN cenaGóra INT,
+IN ilość INT
+)
+BEGIN
+	DECLARE tempTyp VARCHAR(15);
+	DECLARE tempCenaDół INT;
+	DECLARE tempCenaGóra INT;
+	DECLARE tempIlość INT;
+
+	SET @tempTyp = typ;
+	SET @tempCenaDół = cenaDół;
+	SET @tempCenaGóra = cenaGóra;
+	SET @tempIlość = ilość;
+	
+	IF @tempTyp IS NULL THEN
+		SET @query = "SELECT * FROM produkty WHERE produkty.typ IS NULL AND produkty.cena BETWEEN ? AND ? AND produkty.ilość >= ?";
+		
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempCenaDół, @tempCenaGóra, @tempIlość;
+		DEALLOCATE PREPARE stmt;
+		
+	ELSE
+		SET @query = "SELECT * FROM produkty WHERE produkty.typ = ? AND produkty.cena BETWEEN ? AND ? AND produkty.ilość >= ?";
+
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempTyp, @tempCenaDół, @tempCenaGóra, @tempIlość;
+		DEALLOCATE PREPARE stmt;
+	END IF;
+END $$
+DELIMITER ;

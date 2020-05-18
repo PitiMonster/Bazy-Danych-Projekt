@@ -1,0 +1,332 @@
+﻿DELIMITER $$
+CREATE PROCEDURE usuńDostawę(
+IN idDostawy INT,
+OUT wynik BOOLEAN
+)
+BEGIN 
+	DECLARE tempID INT;
+	DECLARE tempInt INT DEFAULT 0;
+	DECLARE tempSukces BOOLEAN DEFAULT TRUE;
+	
+	SET tempID = idDostawy;
+	
+	set @query = 'SELECT COUNT(*), sukces INTO @tempInt, @tempSukces FROM dostawy WHERE dostawy.dostawa_id = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempID;
+	DEALLOCATE PREPARE stmt;
+	
+	START TRANSACTION;
+	
+		IF @tempInt = 0 OR @tempSukces = TRUE THEN
+			SET @wynik = FALSE;
+			SELECT @wynik;
+		ELSE
+			set @query = 'DELETE FROM dostawy WHERE dostawy.dostawa_id = ?';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempID;
+			DEALLOCATE PREPARE stmt;
+			
+			SET @wynik = TRUE;
+			SELECT @wynik;
+		END IF;
+		
+	COMMIT;
+
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE usuńSprzedaż(
+IN idSprzedaży INT,
+OUT wynik BOOLEAN
+)
+BEGIN 
+	DECLARE tempID INT;
+	DECLARE tempInt INT DEFAULT 0;
+	DECLARE tempSukces BOOLEAN DEFAULT TRUE;
+	
+	SET tempID = idSprzedaży;
+	
+	set @query = 'SELECT COUNT(*), sukces INTO @tempInt, @tempSukces FROM sprzedaże WHERE sprzedaże.sprzedaż_id = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempID;
+	DEALLOCATE PREPARE stmt;
+	
+	START TRANSACTION;
+	
+		IF @tempInt = 0 OR @tempSukces = TRUE THEN
+			SET @wynik = FALSE;
+			SELECT @wynik;
+		ELSE
+			set @query = 'DELETE FROM sprzedaże WHERE sprzedaże.sprzedaż_id = ?';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempID;
+			DEALLOCATE PREPARE stmt;
+			
+			SET @wynik = TRUE;
+			SELECT @wynik;
+		END IF;
+	
+	COMMIT;
+
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE usuńDostawcę(
+IN idDostawcy VARCHAR(13),
+OUT wynik BOOLEAN
+)
+BEGIN 
+	DECLARE tempID VARCHAR(13);
+	DECLARE tempInt INT DEFAULT 0;
+	
+	SET @tempNIP = idDostawcy;
+	
+	set @query = 'SELECT COUNT(*) INTO @tempInt FROM dostawcy WHERE dostawcy.dostawca_id = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempID;
+	DEALLOCATE PREPARE stmt;
+	
+	START TRANSACTION;
+	
+		IF @tempInt = 0 THEN
+			SET @wynik = FALSE;
+			SELECT @wynik;
+		ELSE
+			set @query = 'DELETE FROM dostawcy WHERE dostawcy.dostawca_id = ?';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempID;
+			DEALLOCATE PREPARE stmt;
+			
+			SET @wynik = TRUE;
+			SELECT @wynik;
+		END IF;
+
+	COMMIT;
+	
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE usuńKlienta(
+IN idKlienta INT,
+OUT wynik BOOLEAN
+)
+BEGIN 
+	DECLARE tempID INT;
+	DECLARE tempInt INT DEFAULT 0;
+	
+	SET @tempID = idKlienta;
+	
+	set @query = 'SELECT COUNT(*) INTO @tempInt FROM klienci WHERE klienci.klient_id = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempID;
+	DEALLOCATE PREPARE stmt;
+	
+	START TRANSACTION;
+	
+		IF @tempInt = 0 THEN
+			SET @wynik = FALSE;
+			SELECT @wynik;
+		ELSE
+			set @query = 'DELETE FROM klienci WHERE klienci.klient_id = ?';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempID;
+			DEALLOCATE PREPARE stmt;
+			
+			SET @wynik = TRUE;
+			SELECT @wynik;
+		END IF;
+		
+	COMMIT;
+
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE usuńBiałko(
+IN idBiałka INT,
+OUT wynik BOOLEAN
+)
+BEGIN 
+	DECLARE tempID INT;
+	DECLARE tempInt INT DEFAULT 0;
+	
+	SET tempID = idBiałka;
+	
+	set @query = 'SELECT COUNT(*) INTO @tempInt FROM białko WHERE białko.produkt_id = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempID;
+	DEALLOCATE PREPARE stmt;
+	
+	START TRANSACTION;
+	
+		IF @tempInt = 0 THEN
+			SET @wynik = FALSE;
+			SELECT @wynik;
+		ELSE
+			set @query = 'DELETE FROM białko WHERE białko.produkt_id = ?';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempID;
+			DEALLOCATE PREPARE stmt;
+			
+			SET @wynik = TRUE;
+			SELECT @wynik;
+		END IF;
+		
+	COMMIT;
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE usuńSuplement(
+IN idSupla INT,
+OUT wynik BOOLEAN
+)
+BEGIN 
+	DECLARE tempID INT;
+	DECLARE tempInt INT DEFAULT 0;
+	
+	SET tempID = idSupla;
+	
+	set @query = 'SELECT COUNT(*) INTO @tempInt FROM suplementy WHERE suplementy.produkt_id = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempID;
+	DEALLOCATE PREPARE stmt;
+	
+	START TRANSACTION;
+	
+		IF @tempInt = 0 THEN
+			SET @wynik = FALSE;
+			SELECT @wynik;
+		ELSE
+			set @query = 'DELETE FROM suplementy WHERE suplementy.produkt_id = ?';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempID;
+			DEALLOCATE PREPARE stmt;
+			
+			SET @wynik = TRUE;
+			SELECT @wynik;
+		END IF;
+		
+	COMMIT;
+
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE usuńAkcesorium(
+IN idAkcesorium INT,
+OUT wynik BOOLEAN
+)
+BEGIN 
+	DECLARE tempID INT;
+	DECLARE tempInt INT DEFAULT 0;
+	
+	SET tempID = idAkcesorium;
+	
+	set @query = 'SELECT COUNT(*) INTO @tempInt FROM akcesoria WHERE akcesoria.produkt_id = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempID;
+	DEALLOCATE PREPARE stmt;
+	
+	START TRANSACTION;
+	
+		IF @tempInt = 0 THEN
+			SET @wynik = FALSE;
+			SELECT @wynik;
+		ELSE
+			set @query = 'DELETE FROM akcesoria WHERE akcesoria.produkt_id = ?';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempID;
+			DEALLOCATE PREPARE stmt;
+			
+			SET @wynik = TRUE;
+			SELECT @wynik;
+		END IF;
+		
+	COMMIT;
+
+END$$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE usuńOdżywkę(
+IN idOdżywki INT,
+OUT wynik BOOLEAN
+)
+BEGIN 
+	DECLARE tempID INT;
+	DECLARE tempInt INT DEFAULT 0;
+	
+	SET tempID = idOdżywki;
+	
+	set @query = 'SELECT COUNT(*) INTO @tempInt FROM odżywki WHERE odżywki.produkt_id = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempID;
+	DEALLOCATE PREPARE stmt;
+	
+	START TRANSACTION;
+	
+		IF @tempInt = 0 THEN
+			SET @wynik = FALSE;
+			SELECT @wynik;
+		ELSE
+			set @query = 'DELETE FROM odżywki WHERE odżywki.produkt_id = ?';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempID;
+			DEALLOCATE PREPARE stmt;
+			
+			SET @wynik = TRUE;
+			SELECT @wynik;
+		END IF;
+		
+	COMMIT;
+
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE usuńUżytkownika(
+IN loginUsera VARCHAR(20)
+)
+BEGIN
+	DECLARE tempLogin VARCHAR(20);
+	
+	SET @tempLogin= loginUsera;
+	
+	SET @query = "DELETE FROM użytkownicy WHERE użytkownicy.login = ?";
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempLogin;
+	DEALLOCATE PREPARE stmt;
+END$$
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		

@@ -1,0 +1,48 @@
+﻿USE testosterondb;
+
+CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY 'adminhasło';
+CREATE USER IF NOT EXISTS 'menadżer'@'localhost' IDENTIFIED BY 'menadżerhasło';
+CREATE USER IF NOT EXISTS 'pracownik'@'localhost' IDENTIFIED BY 'pracownik';
+
+CREATE ROLE IF NOT EXISTS pracownik;
+CREATE ROLE IF NOT EXISTS menadżer;
+CREATE ROLE IF NOT EXISTS admin;
+
+GRANT pracownik TO menadżer;
+GRANT menadżer TO admin;
+
+GRANT menadżer TO 'menadżer'@'localhost';
+GRANT pracownik TO 'pracownik'@'localhost';
+GRANT admin TO 'admin'@'localhost';
+
+SET DEFAULT ROLE pracownik TO 'pracownik'@'localhost';
+SET DEFAULT ROLE menadżer TO 'menadżer'@'localhost';
+SET DEFAULT ROLE admin TO 'admin'@'localhost';
+
+GRANT EXECUTE ON PROCEDURE testosterondb.dodajKlienta TO 'pracownik'@'%';
+GRANT EXECUTE ON PROCEDURE testosterondb.dodajSprzedaż TO 'pracownik'@'%';
+GRANT EXECUTE ON PROCEDURE testosterondb.logowanie TO 'pracownik'@'%';
+GRANT EXECUTE ON PROCEDURE testosterondb.selectGwiazda TO 'pracownik'@'%';
+GRANT EXECUTE ON FUNCTION testosterondb.validateNIP TO pracownik;
+
+GRANT EXECUTE ON PROCEDURE testosterondb.dodajAkcesoria TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.dodajBiałko TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.dodajDostawcę TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.dodajOdżywki TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.dodajSuplementy TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.usuńAkcesorium TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.usuńBiałko TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.usuńDostawcę TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.usuńKlienta TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.usuńOdżywkę TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.usuńSprzedaż TO menadżer;
+GRANT EXECUTE ON PROCEDURE testosterondb.usuńSuplement TO menadżer;
+grant select on testosterondb.produkty to menadżer;
+grant select on testosterondb.klienci to menadżer;
+grant select on testosterondb.dostawcy to menadżer;
+
+GRANT DELETE ON testosterondb.użytkownicy TO admin;
+GRANT EXECUTE ON PROCEDURE testosterondb.rejestracja TO admin;
+
+GRANT SELECT, LOCK TABLES ON testosterondb.* TO admin;
+GRANT DROP, CREATE, ALTER ON testosterondb.* TO admin;

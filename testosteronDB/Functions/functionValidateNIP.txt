@@ -1,0 +1,60 @@
+SET GLOBAL log_bin_trust_function_creators = 1; -- to jest po to zeby mozna bylo stowrzyc funkcje niedeterministyczna
+DELIMITER $$
+CREATE FUNCTION validateNIP (nip BIGINT, length INT)
+RETURNS BOOLEAN
+BEGIN
+	DECLARE i INT DEFAULT 1;
+	DECLARE controlNumber INT;
+	DECLARE nipNumber VARCHAR(25);
+	DECLARE peselNumbers VARCHAR(25);
+	DECLARE suma INT DEFAULT 0;
+	
+	SET @nipNumbers = '7,6,5,4,3,2,7,5,6';
+	SET @peselNumbers = "7,9,1,3,7,9,1,3,7,9";
+	
+	SET controlNumber = MOD(nip, 10);
+	SET nip = FLOOR(nip/10);
+	
+
+	IF length = 11 THEN
+		sumNumbers: LOOP
+			IF i = 21 THEN
+				LEAVE sumNumbers;
+			END IF;
+			
+			SET suma = suma + CAST(SUBSTRING(@peselNumbers, i, 1) AS SIGNED)*MOD(nip,10);
+			SET nip = FLOOR(nip/10);
+			
+			SET i = i + 2;
+			
+		END LOOP sumNumbers;
+		
+		IF MOD(suma,10) = controlNumber THEN
+			RETURN TRUE;
+		END IF;
+		
+			
+	ELSEIF length = 10 THEN
+		sumNumbers: LOOP
+			IF i = 19 THEN
+				LEAVE sumNumbers;
+			END IF;
+			
+			SET suma = suma + CAST(SUBSTRING(@nipNumbers, i, 1) AS SIGNED)*MOD(nip,10);
+			SET nip = FLOOR(nip/10);
+			SET i = i + 2;
+			
+		END LOOP sumNumbers;
+		SET i = i -2;
+		
+		IF MOD(suma, 11) = controlNumber THEN
+			RETURN TRUE;
+		END IF;
+		
+	END IF;
+	
+	RETURN FALSE;
+	
+	
+END$$
+DELIMITER ;

@@ -1,0 +1,38 @@
+DELIMITER $$
+CREATE PROCEDURE logowanie(
+IN newLogin VARCHAR(20),
+IN hasło VARCHAR(64)
+)
+BEGIN
+	DECLARE tempSha2 VARCHAR(64);
+	DECLARE tempLogin VARCHAR(20);
+	DECLARE temp VARCHAR(64);
+	DECLARE temp1 VARCHAR(64);
+	DECLARE ala VARCHAR(64);
+	DECLARE wynik INT;
+
+	
+	SET @tempLogin = newLogin;
+	
+	SET @hashQuery = 'SELECT hasło_sha2 , typ INTO @temp,@temp1 FROM użytkownicy WHERE login = ? ';
+	PREPARE stmt FROM @hashQuery;
+	EXECUTE stmt USING @tempLogin;
+	DEALLOCATE PREPARE stmt;
+	
+
+	SET @tempSha2 = SHA2(hasło, 0) COLLATE utf8mb4_0900_ai_ci;
+	
+	
+	IF STRCMP(@tempSha2, @temp) = 0 THEN
+		SET wynik = 1;
+		SELECT wynik;
+	ELSE
+		SET wynik = 2;
+		SELECT wynik;
+	
+	
+
+	END IF;
+	
+END$$
+DELIMITER ;

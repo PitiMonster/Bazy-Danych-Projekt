@@ -1,0 +1,13 @@
+﻿CREATE INDEX sprzedażeSukcesIndex ON sprzedaże(sukces) USING BTREE;
+CREATE INDEX sprzedażeDataIndex ON sprzedaże(data) USING BTREE;
+
+CREATE INDEX dostawySukcesIndex ON dostawy(sukces) USING BTREE;		
+CREATE INDEX dostawyDataIndex ON dostawy(data) USING BTREE;
+
+CREATE FULLTEXT INDEX suplementyNazwaIndex ON suplementy(nazwa);
+CREATE FULLTEXT INDEX akcesoriaNazwaIndex ON akcesoria(nazwa);
+CREATE FULLTEXT INDEX odżywkiNazwaIndex ON odżywki(nazwa);
+
+CREATE INDEX produktyIDIndex ON produkty(produkt_id) USING BTREE;
+
+CREATE FULLTEXT INDEX użytkownicyLoginIndex ON użytkownicy(login);

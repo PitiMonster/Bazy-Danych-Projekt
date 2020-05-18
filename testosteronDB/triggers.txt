@@ -1,0 +1,67 @@
+﻿DELIMITER $$
+CREATE TRIGGER dodajSzczegółyDostawy AFTER INSERT
+ON szczegóły_dostawy
+FOR EACH ROW 
+BEGIN
+
+	UPDATE produkty SET produkty.ilość = produkty.ilość + new.ilość WHERE produkty.produkt_id = new.produkt_id;
+ 	
+END $$
+DELIMITER ;
+
+DELIMITER $$ 
+CREATE TRIGGER dodajSzczegółySprzedaży AFTER INSERT
+ON szczegóły_sprzedaży
+FOR EACH ROW
+BEGIN
+
+	UPDATE produkty SET produkty.ilość = produkty.ilość - new.ilość WHERE produkty.produkt_id = new.produkt_id;
+	
+END$$
+DELIMITER ;
+
+DELIMITER $$ 
+CREATE TRIGGER usuńSzczegółySprzedaży AFTER DELETE
+ON szczegóły_sprzedaży
+FOR EACH ROW
+BEGIN
+	UPDATE produkty SET produkty.ilość = produkty.ilość + OLD.ilość WHERE produkty.produkt_id = OLD.produkt_id;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER akceptacjaSprzedaże AFTER UPDATE ON sprzedaże FOR EACH ROW
+BEGIN
+	IF new.sukces AND NOT old.sukces THEN
+	
+		CREATE TEMPORARY TABLE odjęteProdukty AS(
+			SELECT ss.product_id, ss.ilość FROM sprzedaże AS s 
+			INNER JOIN szczegóły_sprzedaży AS ss ON s.sprzedaż_id = ss.sprzedaż_id
+			WHERE s.sprzedaż_id = new.sprzedaż_id);
+			
+		UPDATE produkty p 
+		INNER JOIN odjęteProdukty ON p.product_id = odjęteProdukty.product_id
+		SET p.ilość = p.ilość - odjęteProdukty.ilość;
+	END IF;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER akceptacjaDostawy AFTER UPDATE ON dostawy FOR EACH ROW
+BEGIN
+	IF new.sukces AND NOT old.sukces THEN
+	
+		CREATE TEMPORARY TABLE dodaneProdukty AS(
+			SELECT sd.product_id, sd.ilość FROM dostawy AS s 
+			INNER JOIN szczegóły_dostawy AS sd ON s.dostawa_id = sd.dostawa_id
+			WHERE s.dostawa_id = new.dostawa_id);
+			
+		UPDATE produkty p 
+		INNER JOIN dodaneProdukty ON p.product_id = dodaneProdukty.product_id
+		SET p.ilość = p.ilość + dodaneProdukty.ilość;
+	END IF;
+END$$
+DELIMITER ;
+

@@ -1,0 +1,101 @@
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\bin\Debug\Testosteron.exe.config
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\bin\Debug\Testosteron.exe
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\bin\Debug\Testosteron.pdb
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.csprojAssemblyReference.cache
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.LoginForm.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.Properties.Resources.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.csproj.GenerateResource.cache
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.exe
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.pdb
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelWorker.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddClient.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddOrder.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSupplier.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormEditOrder.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormCheckState.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormListOfProducts.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelManager.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddAccesorry.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddOdżywka.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddProduct.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSuplement.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSupply.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddWPC.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormEditSupply.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddUser.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormDeleteUser.resources
+C:\Users\Paweł\Desktop\Testosteron\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelAdmin.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\Testosteron.exe.config
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\Testosteron.exe
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\Testosteron.pdb
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.csprojAssemblyReference.cache
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddAccesorry.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddClient.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddOdżywka.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddOrder.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddProduct.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSuplement.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSupplier.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSupply.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddUser.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddWPC.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormCheckState.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormDeleteUser.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormListOfProducts.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelAdmin.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelManager.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelWorker.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.LoginForm.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.Properties.Resources.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.csproj.GenerateResource.cache
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.csproj.CoreCompileInputs.cache
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.exe
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.pdb
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\MySql.Data.dll
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\Google.Protobuf.dll
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\Renci.SshNet.dll
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\MySql.Data.xml
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.csproj.CopyComplete
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\obj\Debug\Testosteron.Login2.resources
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\MySqlBackup.dll
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\Google.Protobuf.xml
+C:\Users\piotr\OneDrive\Pulpit\Testosteron\Testosteron\bin\Debug\Renci.SshNet.xml
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\Testosteron.exe.config
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\Testosteron.exe
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\Testosteron.pdb
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\Google.Protobuf.dll
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\MySql.Data.dll
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\MySqlBackup.dll
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\Renci.SshNet.dll
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\Google.Protobuf.xml
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\MySql.Data.xml
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\bin\Debug\Renci.SshNet.xml
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.csprojAssemblyReference.cache
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddAccesorry.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddClient.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddOdżywka.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddOrder.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddProduct.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSuplement.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSupplier.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddSupply.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddUser.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormAddWPC.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormCheckState.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormDeleteUser.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormListOfProducts.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelAdmin.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelManager.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.FormMainPanelWorker.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.Login2.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.LoginForm.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.Properties.Resources.resources
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.csproj.GenerateResource.cache
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.csproj.CoreCompileInputs.cache
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.csproj.CopyComplete
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.exe
+C:\Users\piotr\OneDrive\Pulpit\Studia\semestr 3\bazy_danych\Projekt\Testosteron\Testosteron\obj\Debug\Testosteron.pdb

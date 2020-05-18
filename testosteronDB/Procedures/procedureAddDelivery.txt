@@ -1,0 +1,117 @@
+DELIMITER $$
+CREATE PROCEDURE dodajDostawę(
+  dataDostawy date,
+  daneDostawy text,
+  idDostawcy INT
+  )
+  BEGIN
+   
+    /*exception handling*/
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+      ROLLBACK;
+      SET autocommit = 1;
+    END;
+   
+    SET autocommit = 0;
+    START TRANSACTION;
+   
+    PREPARE query FROM
+    'INSERT INTO dostawy(data, sukces, dostawca_id)
+    VALUES (?, 1, ?)';
+   
+    SET @dataDostawy = dataDostawy;
+    SET @daneDostawy = daneDostawy;
+	SET @idDostawcy = idDostawcy;
+ 
+    EXECUTE query USING @dataDostawy, @idDostawcy;
+    DEALLOCATE PREPARE query;
+   
+    SELECT MAX(dostawa_id) INTO @dostawa_id FROM dostawy;
+   
+    productsLoop: LOOP
+        IF (LOCATE(';', @daneDostawy) = 0) THEN
+            LEAVE productsLoop;
+        END IF;
+ 
+        SET @produkt_id = SUBSTRING(@daneDostawy, 1, LOCATE(',',@daneDostawy)-1);
+        SET @produkt_ilość = SUBSTRING(@daneDostawy, LOCATE(',',@daneDostawy)+1, LOCATE(';',@daneDostawy)-4);
+        SET @daneDostawy = SUBSTRING(@daneDostawy, LOCATE(';',@daneDostawy) +1);
+        	SELECT @produkt_id, @produkt_ilość, @daneDostawy, @dostawa_id; 
+
+     PREPARE query FROM
+        'INSERT INTO szczegóły_dostawy(dostawa_id, produkt_id, ilość)
+        VALUES (?, ?, ?)';
+ 
+        EXECUTE query USING @dostawa_id, @produkt_id, @produkt_ilość;
+        DEALLOCATE PREPARE query;
+    END LOOP productsLoop;
+    COMMIT;
+    SET autocommit = 1;
+  END $$
+DELIMITER ;
+
+   
+DELIMITER $$
+CREATE PROCEDURE dodajSprzedaż(
+  dataSprzedaży date,
+  daneSprzedaży text,
+  idKlienta INT
+  )
+  BEGIN
+   
+    /*exception handling*/
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+      ROLLBACK;
+      SET autocommit = 1;
+    END;
+   
+    SET autocommit = 0;
+    START TRANSACTION;
+   
+    PREPARE query FROM
+    'INSERT INTO sprzedaże(data, sukces, klient_id)
+    VALUES (?, 1, ?)';
+   
+    SET @dataSprzedaży = dataSprzedaży;
+    SET @daneSprzedaży = daneSprzedaży;
+	SET @idKlienta = idKlienta;
+ 
+    EXECUTE query USING @dataSprzedaży, @idKlienta;
+    DEALLOCATE PREPARE query;
+   
+    SELECT MAX(sprzedaż_id) INTO @sprzedaż_id FROM sprzedaże;
+   
+    productsLoop: LOOP
+        IF (LOCATE(';', @daneSprzedaży) = 0) THEN
+            LEAVE productsLoop;
+        END IF;
+ 
+        SET @produkt_id = SUBSTRING(@daneSprzedaży, 1, LOCATE(',',@daneSprzedaży)-1);
+        SET @produkt_ilość = SUBSTRING(@daneSprzedaży, LOCATE(',',@daneSprzedaży)-1, LOCATE(';',@daneSprzedaży)-3);
+        SET @daneSprzedaży = SUBSTRING(@daneSprzedaży, LOCATE(';',@daneSprzedaży) +1);
+		
+		IF NOT czyIlośćDodatnia(@produkt_ilość, @produkt_id) THEN
+			SELECT 0;
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Nie wystarczająca ilość produktów do wykonania sprzedaży';
+		END IF;
+		
+        
+        PREPARE query FROM
+        'INSERT INTO szczegóły_sprzedaży(sprzedaż_id, produkt_id, ilość)
+        VALUES (?, ?, ?)';
+ 
+        EXECUTE query USING @sprzedaż_id, @produkt_id, @produkt_ilość;
+        DEALLOCATE PREPARE query;
+    END LOOP productsLoop;
+    COMMIT;
+	SELECT 1;
+    SET autocommit = 1;
+  END $$
+DELIMITER ;
+
+
+
+
+

@@ -1,0 +1,18 @@
+DELIMITER $$
+CREATE FUNCTION czyIlośćDodatnia( wartość INT, produktID INT )
+RETURNS BOOLEAN DETERMINISTIC
+BEGIN 
+	
+	DECLARE tempInt INT;
+	
+	SET @wartość = wartość;
+	SET @produktID = produktID;
+	
+	SET @tempInt = (SELECT ilość FROM produkty WHERE produkty.produkt_id = @produktID);
+	IF @wartość <= @tempInt THEN
+		RETURN TRUE;
+	ELSE
+		RETURN FALSE;
+	END IF;
+END$$
+DELIMITER ;

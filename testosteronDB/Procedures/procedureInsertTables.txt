@@ -1,0 +1,364 @@
+﻿DELIMITER $$
+CREATE PROCEDURE dodajBiałko(
+IN typ VARCHAR(15),
+IN smak VARCHAR(50),
+IN opis VARCHAR(500),
+IN cena INT,
+IN ilość INT
+)
+BEGIN
+	DECLARE tempTyp VARCHAR(15);
+	DECLARE tempSmak VARCHAR(50);
+	DECLARE tempOpis VARCHAR(500);
+	DECLARE tempCena INT;
+	DECLARE tempIlość INT;
+	DECLARE id INT;
+	
+	SET @tempTyp = typ;
+	SET @tempSmak = smak;
+	SET @tempOpis = opis;
+	SET @tempCena = cena;
+	SET @tempIlość = ilość;
+	SET @id = (SELECT ostatnieID());
+	
+		
+	SET autocommit = 0;
+	START TRANSACTION;
+	
+		SET @query2 = 'INSERT INTO produkty VALUES(NULL, "białko", ?, ?)';
+		PREPARE stmt FROM @query2;
+		EXECUTE stmt USING @tempCena, @tempIlość;
+		DEALLOCATE PREPARE stmt;
+
+		SET @query = 'INSERT INTO białko VALUES(@id+1, ?, ?, ?)';
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempTyp, @tempSmak, @tempOpis;
+		DEALLOCATE PREPARE stmt;
+		
+	COMMIT;
+	
+	
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE dodajSuplementy(
+IN typ VARCHAR(15),
+IN nazwa VARCHAR(75),
+IN opis VARCHAR(500),
+IN cena INT,
+IN ilość INT
+)
+BEGIN
+	DECLARE tempTyp VARCHAR(15);
+	DECLARE tempNazwa VARCHAR(75);
+	DECLARE tempOpis VARCHAR(500);
+	DECLARE tempCena INT;
+	DECLARE tempIlość INT;
+	DECLARE id INT;
+	
+	SET @tempTyp = typ;
+	SET @tempNazwa = nazwa;
+	SET @tempOpis = opis;
+	SET @tempCena = cena;
+	SET @tempIlość = ilość;
+	SET @id = (SELECT ostatnieID());
+	
+		
+	SET autocommit = 0;
+	START TRANSACTION;
+	
+		SET @query2 = 'INSERT INTO produkty VALUES(NULL, "suplementy", ?, ?)';
+		PREPARE stmt FROM @query2;
+		EXECUTE stmt USING @tempCena, @tempIlość;
+		DEALLOCATE PREPARE stmt;
+
+		SET @query = 'INSERT INTO suplementy VALUES(@id+1, ?, ?, ?)';
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempTyp, @tempNazwa, @tempOpis;
+		DEALLOCATE PREPARE stmt;
+		
+	COMMIT;
+		
+	
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE dodajAkcesoria(
+IN typ VARCHAR(15),
+IN nazwa VARCHAR(75),
+IN opis VARCHAR(500),
+IN cena INT,
+IN ilość INT
+)
+BEGIN
+	DECLARE tempTyp VARCHAR(15);
+	DECLARE tempNazwa VARCHAR(75);
+	DECLARE tempOpis VARCHAR(500);
+	DECLARE tempCena INT;
+	DECLARE tempIlość INT;
+	DECLARE id INT;
+	
+	SET @tempTyp = typ;
+	SET @tempNazwa = nazwa;
+	SET @tempOpis = opis;
+	SET @tempCena = cena;
+	SET @tempIlość = ilość; 
+	SET @id = (SELECT ostatnieID());
+	
+		
+	SET autocommit = 0;
+	
+	START TRANSACTION;
+	
+		SET @query2 = 'INSERT INTO produkty VALUES(NULL, "akcesoria", ?, ?)';
+		PREPARE stmt FROM @query2;
+		EXECUTE stmt USING @tempCena, @tempIlość;
+		DEALLOCATE PREPARE stmt;
+
+		SET @query = 'INSERT INTO akcesoria VALUES(@id+1, ?, ?, ?)';
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempTyp, @tempNazwa, @tempOpis;
+		DEALLOCATE PREPARE stmt;
+		
+	COMMIT;
+	
+	
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE dodajOdżywki(
+IN typ VARCHAR(15),
+IN nazwa VARCHAR(75),
+IN opis VARCHAR(500),
+IN cena INT,
+IN ilość INT
+)
+BEGIN
+	DECLARE tempTyp VARCHAR(15);
+	DECLARE tempNazwa VARCHAR(75);
+	DECLARE tempOpis VARCHAR(500);
+	DECLARE tempCena INT;
+	DECLARE tempIlość INT;
+	DECLARE id INT;
+	
+	SET @tempTyp = typ;
+	SET @tempNazwa = nazwa;
+	SET @tempOpis = opis;
+	SET @tempCena = cena;
+	SET @tempIlość = ilość;
+	SET @id = (SELECT ostatnieID())+1;
+	
+		
+	SET autocommit = 0;
+	START TRANSACTION;
+	
+		SET @query2 = 'INSERT INTO produkty VALUES(NULL, "odżywki", ?, ?)';
+		PREPARE stmt FROM @query2;
+		EXECUTE stmt USING @tempCena, @tempIlość;
+		DEALLOCATE PREPARE stmt;
+
+		SET @query = 'INSERT INTO odżywki VALUES(@id, ?, ?, ?)';
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempTyp, @tempNazwa, @tempOpis;
+		DEALLOCATE PREPARE stmt;
+	
+	COMMIT;
+		
+	
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE dodajDostawę(
+IN produktID INT,
+IN dostawcaID INT,
+IN ilość INT,
+IN dataa DATE
+)
+BEGIN
+	DECLARE tempProduktID INT;
+	DECLARE tempDostawcaID INT;
+	DECLARE tempIlość INT;
+	DECLARE tempData DATE;
+	DECLARE tempSukces BOOLEAN DEFAULT FALSE;
+	DECLARE idDostawy INT;
+	
+	SET @tempProduktID = produktID;
+	SET @tempDostawcaID = dostawcaID;
+	SET @tempIlość = ilość;
+	SET @tempData = dataa;
+	
+	IF @tempData <= CURRENT_DATE() THEN
+		SET @tempSukces = TRUE;
+	END IF;
+	
+	SET autocommit = 0;
+	START TRANSACTION;
+		
+		SET @query = 'INSERT INTO dostawy VALUES(NULL, ?, ?, ?)';
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempDate, @tempDostawcaID, @tempSukces;
+		DEALLOCATE PREPARE stmt;
+		
+		SET idDostawy = (SELECT MAX(dostawa_id) FROM dostawy);
+		
+		SET @query = 'INSERT INTO szczegóły_dostawy VALUES(NULL, ?, @id, ?)';
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempProduktID, @tempIlość;
+		DEALLOCATE PREPARE stmt;
+		
+	COMMIT;
+	
+END $$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE dodajSprzedaż(
+IN produktID INT,
+IN klientID INT,
+IN ilość INT,
+IN dataa DATE
+)
+BEGIN
+	DECLARE tempProduktID INT;
+	DECLARE tempKlientID INT;
+	DECLARE tempIlość INT;
+	DECLARE tempData DATE;
+	DECLARE tempSukces BOOLEAN DEFAULT FALSE;
+	DECLARE idDostawy INT;
+	
+	SET @tempProduktID = produktID;
+	SET @tempKlientID = klientID;
+	SET @tempIlość = ilość;
+	SET @tempData = dataa;
+	
+	IF tempData <= CURRENT_DATE() THEN
+		SET @tempSukces = TRUE;
+	END IF;
+	
+	SET autocommit = 0;	
+	START TRANSACTION;
+	
+		SET @query = 'INSERT INTO sprzedaże VALUES(NULL, ?, ?, ?)';
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempDate, @tempKlientID, @tempSukces;
+		DEALLOCATE PREPARE stmt;
+		
+		SET idDostawy = (SELECT MAX(sprzedaż_id) FROM dostawy);
+		
+		SET @query = 'INSERT INTO szczegóły_sprzedaży VALUES(NULL, ?, @id, ?)';
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @tempProduktID, @tempIlość;
+		DEALLOCATE PREPARE stmt;
+		
+	COMMIT;
+	
+END $$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE dodajDostawcę(
+IN nazwa VARCHAR(20),
+IN NIP VARCHAR(13),
+IN adres VARCHAR(30)
+)
+BEGIN 
+	DECLARE tempNazwa VARCHAR(20);
+	DECLARE tempNIP VARCHAR(13) DEFAULT NULL;
+	DECLARE tempAdres VARCHAR(30);
+	DECLARE tempInt INT DEFAULT 0;
+	DECLARE wynik INT;
+	SET @tempNazwa = nazwa;
+	SET @tempNIP = NIP;
+	SET @tempAdres = adres;
+	
+	SET @query = 'SELECT COUNT(*) INTO @tempInt FROM dostawcy WHERE dostawcy.nip = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempNIP;
+	DEALLOCATE PREPARE stmt;
+	
+	SET autocommit = 0;
+	START TRANSACTION;
+	
+		IF @tempInt > 0 THEN 
+		
+			SET wynik = 0;
+			SELECT wynik;
+		ELSE
+			SET @query = 'INSERT INTO dostawcy VALUES(NULL,?,?,?)';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempNazwa, @tempNIP, @tempAdres;
+			DEALLOCATE PREPARE stmt;
+			SET wynik = 1;
+			SELECT wynik;
+		END IF;
+	
+	COMMIT;
+	
+END $$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE dodajKlienta(
+IN nazwa VARCHAR(20),
+IN NIP VARCHAR(13),
+IN adres VARCHAR(30)
+)
+BEGIN 
+	DECLARE tempNazwa VARCHAR(20);
+	DECLARE tempNIP VARCHAR(13) DEFAULT NULL;
+	DECLARE tempAdres VARCHAR(30);
+	DECLARE tempInt INT DEFAULT 0;
+		DECLARE wynik INT;
+
+	SET @tempNazwa = nazwa;
+	SET @tempNIP = NIP;
+	SET @tempAdres = adres;
+	
+	SET @query = 'SELECT COUNT(*) INTO @tempInt FROM klienci WHERE klienci.nip = ?';
+	PREPARE stmt FROM @query;
+	EXECUTE stmt USING @tempNIP;
+	DEALLOCATE PREPARE stmt;
+	
+	SET autocommit = 0;
+	START TRANSACTION;
+	
+		IF @tempInt > 0 THEN 
+		
+			SET wynik = 0;
+			SELECT wynik;
+		ELSE
+			SET @query = 'INSERT INTO klienci VALUES(NULL,?,?,?)';
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @tempNazwa, @tempNIP, @tempAdres;
+			DEALLOCATE PREPARE stmt;
+			SET wynik = 1;
+			SELECT wynik;
+		END IF;
+	
+	COMMIT;
+	
+END $$
+DELIMITER ;
+
+
+	
+	
+	
+
+	
+
+
+	
+	
